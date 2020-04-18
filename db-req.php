@@ -30,7 +30,7 @@ if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
 			print "Авторизация прошла успешно.<br> 
 		Пользователь: <font color=#000EE5><b>{$fet[0]['login']}</b></font>, 
 		id: <font color=#e70000><b>{$fet[0]['id']}</b></font><br>
-		<p>Оцени этот <b><font color='yellow'>дизайнеский</font></b> 
+		<p>Оцени этот <b><font color='yellow'>диза<font color='blue'>йнер</font>ский</font></b> 
 		<font color='red'>высер</font></p>
 			А теперь упердывай ==> ";
 			print "<a href='tr-posts.php'>Страница с сообщениями.</a><br>";
