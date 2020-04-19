@@ -21,7 +21,7 @@ print "<h2>Вы вошли как жопой об косяк, нахуй. Ну �
                 padding-left: 5px;
 				padding-bottom: 2px;
 				padding-top: 2px;
-                width: 550px; 
+                width: 630px; 
 				//word-wrap: break-word;
 				//word-break: break-all;
 				table-layout: fixed;
@@ -43,6 +43,8 @@ print "<h2>Вы вошли как жопой об косяк, нахуй. Ну �
 				word-wrap: break-word;
 				table-layout:fixed;
 				font-family: lucida console;
+				margin-left: 4px;
+				margin-right: 7px;
 
 			}
     </style>
