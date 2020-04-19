@@ -78,7 +78,7 @@ print "<h2>Вы вошли как жопой об косяк. Ну привет,
 				font-family: Arial;
 			}
     </style>
-<p> <a href='index.php'>На главную.</a> Всего постов: <?php print $co_po; ?> </p>
+<p> <a href='index.php'>На главную</a> <a href='tr-posts.php'>Обновить</a></p>
 
 <div class='main'>
 
@@ -94,13 +94,16 @@ print "<h2>Вы вошли как жопой об косяк. Ну привет,
 <?php
 $post = $_POST['txt'];
 $autor = $_SESSION['user'];
-	if($post and $autor)
+	if(!empty($post))
 		{	
 			go_post($post, $autor, $db_user);
+			show_posts($db_user);
+			exit;
 		}
 	if($_SESSION['user'])
 		{
 			show_posts($db_user);
+			exit;
 		}
 ?>
 	</div>

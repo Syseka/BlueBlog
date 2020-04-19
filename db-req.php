@@ -126,22 +126,26 @@ $n = 0;
 // ПУБЛИКАЦИЯ
 // ПУБЛИКАЦИЯ
 // ПУБЛИКАЦИЯ
-/*
+
 function go_post($sp, $nam, $db)
 	{
 		if ($sp)
 			{
-				$ad_po = $db->("INSERT INTO `postes` (`autor`,`letter`,`type`) 
-				VALUES (?, ?, `type1`)");
+				$ad_po = $db->prepare(
+				"INSERT INTO `postes` (`autor`,`letter`,`type`) 
+				VALUE (?, ?, 'type1')");
 				$ad_po->BindParam(1, $nam);
 				$ad_po->BindParam(2, $sp);
 				$posEx = $ad_po->execute();
+				
+				//$db->query("INSERT INTO `postes` (`autor`, `letter`, `type`) 
+				//VALUE ('$nam', '$sp', 'type1')");
 			}
 		else
 			{
 				print "Нечего постить.";
 			}
-	}*/
+	}
 
 
 

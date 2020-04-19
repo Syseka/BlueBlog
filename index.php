@@ -12,3 +12,9 @@
 	</div>
 </body>
 </html>
+
+<?php
+// .htaccess
+// php_value display_errors on
+// php_value display_startup_errors on
+?>

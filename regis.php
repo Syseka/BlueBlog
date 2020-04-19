@@ -21,6 +21,7 @@ if ($log != NULL)
     {
         include "db-req.php";
         adduser ($log, $pas, $db_user);
+		exit;
     }
 else
     {

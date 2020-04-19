@@ -25,6 +25,7 @@ include "db-req.php";
 if ($log and $pas)
     {
         logtest ($log, $pas, $db_user);
+		exit;
     }
 else
 	{
