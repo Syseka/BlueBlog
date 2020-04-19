@@ -125,14 +125,14 @@ $n = 0;
 // номер поста $fa_po[$n]['id']
 	while ($n <= $co_po)
 		{
-echo "<div class='mess'><pre>";
-print 
-	"<h3>Сообщение #".$fa_po[$n]['id']."</h3> <br>".
-	"<p>Автор: ".$fa_po[$n]['autor']."</p>".
-	//"Категория: ". $posts['type']. "<br>".
+			echo "<div class='mess'>";
+			print 
+		"<h3>Сообщение #".$fa_po[$n]['id']."</h3>".
+//"Категория: ". $posts['type']. "<br>".
 //пока без нее тошно
-	"<p>Текст: ".$fa_po[$n]['letter']."</p><br>";
-	echo "</pre></div>";
-	$n++;
+		"<p>".$fa_po[$n]['letter']."</p>".
+		"<p>От: ".$fa_po[$n]['autor']."</p>";
+		echo "</div>";
+		$n++;
 		}
 	}
