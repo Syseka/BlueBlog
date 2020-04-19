@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include 'notes.php';
 
 $db_user = new PDO ( $infdb, $logdb, $passdb);
@@ -23,17 +23,15 @@ function logtest ($l, $p, $db)
 if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
 		{
 // при успехе дает доступ на страницу с постами <- ЭТУ СТРАНИЦУ НАДО СДЕЛАТЬ
-// надо сделать ==> header('0Nblog/post/posts.php');
+// надо сделать ==> header('tr-posts.php');
 // header не работает, пусть будет ссылка до лучших времен
-			
-// пока будет кастыль через ссылкой на файл posts.php
+				
 			print "Авторизация прошла успешно.<br> 
 		Пользователь: <font color=#000EE5><b>{$fet[0]['login']}</b></font>, 
 		id: <font color=#e70000><b>{$fet[0]['id']}</b></font><br>
-		<p>Оцени этот <b><font color='yellow'>диза<font color='blue'>йнер</font>ский</font></b> 
-		<font color='red'>высер</font></p>
 			А теперь упердывай ==> ";
 			print "<a href='tr-posts.php'>Страница с сообщениями.</a><br>";
+
 /*			
 			$host  = $_SERVER['HTTP_HOST'];
 			$url   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
@@ -101,3 +99,40 @@ function adduser ($l, $p, $db)
             print "Имя <b>$l</b> уже занято.<br>";
         }
 }
+
+
+// ПОСТЫ
+// ПОСТЫ
+// ПОСТЫ
+// ПОСТЫ
+function show_posts($db)
+	{
+		$sh_po = $db->prepare("SELECT * FROM `postes` ORDER BY `id` DESC"); //ORDER BY `id` DESC
+//var_dump($sh_po); echo "<br>";echo "<br>";
+		$ex_po = $sh_po->execute();
+//var_dump($ex_po); echo "<br>";echo "<br>";
+		$fa_po = $sh_po->fetchAll(PDO::FETCH_ASSOC);
+//var_dump($fa_po); echo "<br>";echo "<br>";
+	
+	//print $fa_po[2]['letter']; echo " - текст поста<br>";
+	//print $fa_po[2]['autor']; echo " - имя автора<br>";
+	//print $fa_po[2]['id']; echo " - id поста<br>";
+	
+$co_po = count($fa_po);
+$n = 0;
+// текст поста $fa_po[$n]['letter']
+// автор поста $fa_po[$n]['autor']
+// номер поста $fa_po[$n]['id']
+	while ($n <= $co_po)
+		{
+echo "<div class='mess'><pre>";
+print 
+	"<h3>Сообщение #".$fa_po[$n]['id']."</h3> <br>".
+	"<p>Автор: ".$fa_po[$n]['autor']."</p>".
+	//"Категория: ". $posts['type']. "<br>".
+//пока без нее тошно
+	"<p>Текст: ".$fa_po[$n]['letter']."</p><br>";
+	echo "</pre></div>";
+	$n++;
+		}
+	}

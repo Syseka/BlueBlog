@@ -1,3 +1,7 @@
+<?php 
+session_start(); 
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +18,7 @@
 		<a href='main-page.php'>На главную</a><br>
     </form> </div>
 <?php
-$log = $_POST['log'];
+$log = $_SESSION['user'] = $_POST['log'];
 $pas = $_POST['pas'];
 include "db-req.php";
 //var_dump($log, $pas); 
