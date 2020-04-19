@@ -11,7 +11,7 @@
         <input name='pas' type='password' placeholder='Пароль'><br>
         <button type='sumbit'>Регистрация</button><br>
         <a href='login.php'>Уже есть профиль</a><br>
-		<a href='main-page.php'>На главную</a>
+		<a href='index.php'>На главную</a>
     </form> </div>
 <?php
 $log = $_POST['log'];

@@ -13,12 +13,10 @@ $db_user->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 function logtest ($l, $p, $db)
 {
 	$aut = $db->prepare("SELECT * FROM `user-list` 
-						WHERE `login` = :log "); // `password` = :pas
+						WHERE `login` = :log"); // `password` = :pas
 	$aut->BindParam(':log', $l);
-	//$aut->BindParam(':pas', $p);
 	$aut->execute();
 	$fet = $aut->fetchAll(PDO::FETCH_ASSOC);
-	//var_dump($fet);
 	
 if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
 		{
@@ -36,13 +34,7 @@ if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
 			$host  = $_SERVER['HTTP_HOST'];
 			$url   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 			$pos="tr-posts.php";
-var_dump($host); echo ' - host<br>';
-var_dump($url); echo ' - url<br>';
-var_dump($pos); echo ' - pos<br>';
-print "И получается же, блять, это говно: $host$url/$pos. 
-Хули ты не переходишь, header ебаный?";
 			header("Location: http://$host$url/$pos");
-			//header("http://$host$url/$pos");
 			exit;*/
         }
     else
@@ -71,7 +63,7 @@ function adduser ($l, $p, $db)
 
     if ($res[0]['login'] != $l and $p)
         {
-            $nUs = $db->prepare("INSERT INTO `user-list` (`login`, `password`, posts)
+            $nUs = $db->prepare("INSERT INTO `user-list` (`login`, `password`, `posts`)
 			VALUES (?, ?, 0)");
             $nUs->bindParam(1, $l);
             $nUs->bindParam(2, $p);
@@ -107,32 +99,63 @@ function adduser ($l, $p, $db)
 // ПОСТЫ
 function show_posts($db)
 	{
-		$sh_po = $db->prepare("SELECT * FROM `postes` ORDER BY `id` DESC"); //ORDER BY `id` DESC
-//var_dump($sh_po); echo "<br>";echo "<br>";
+		$sh_po = $db->prepare("SELECT * FROM `postes` ORDER BY `id` DESC");
 		$ex_po = $sh_po->execute();
-//var_dump($ex_po); echo "<br>";echo "<br>";
 		$fa_po = $sh_po->fetchAll(PDO::FETCH_ASSOC);
-//var_dump($fa_po); echo "<br>";echo "<br>";
-	
-	//print $fa_po[2]['letter']; echo " - текст поста<br>";
-	//print $fa_po[2]['autor']; echo " - имя автора<br>";
-	//print $fa_po[2]['id']; echo " - id поста<br>";
 	
 $co_po = count($fa_po);
 $n = 0;
-// текст поста $fa_po[$n]['letter']
-// автор поста $fa_po[$n]['autor']
-// номер поста $fa_po[$n]['id']
-	while ($n <= $co_po)
+
+	while ($n < $co_po)
 		{
 			echo "<div class='mess'>";
 			print 
 		"<h3>Сообщение #".$fa_po[$n]['id']."</h3>".
 //"Категория: ". $posts['type']. "<br>".
 //пока без нее тошно
-		"<p>".$fa_po[$n]['letter']."</p>".
-		"<p>От: ".$fa_po[$n]['autor']."</p>";
+		"<p class='letter'>".$fa_po[$n]['letter']."</p>".
+		"<p class='autor'>от: ".$fa_po[$n]['autor']."</p>";
 		echo "</div>";
 		$n++;
 		}
 	}
+	
+	
+
+// ПУБЛИКАЦИЯ
+// ПУБЛИКАЦИЯ
+// ПУБЛИКАЦИЯ
+// ПУБЛИКАЦИЯ
+/*
+function go_post($sp, $nam, $db)
+	{
+		if ($sp)
+			{
+				$ad_po = $db->("INSERT INTO `postes` (`autor`,`letter`,`type`) 
+				VALUES (?, ?, `type1`)");
+				$ad_po->BindParam(1, $nam);
+				$ad_po->BindParam(2, $sp);
+				$posEx = $ad_po->execute();
+			}
+		else
+			{
+				print "Нечего постить.";
+			}
+	}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

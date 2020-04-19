@@ -15,13 +15,12 @@ session_start();
         <input name='pas' type='password' placeholder='Пароль'><br>
         <button type='sumbit'>Войти</button><br>
         <a href='regis.php'>Регистрация</a><br>
-		<a href='main-page.php'>На главную</a><br>
+		<a href='index.php'>На главную</a><br>
     </form> </div>
 <?php
 $log = $_SESSION['user'] = $_POST['log'];
 $pas = $_POST['pas'];
-include "db-req.php";
-//var_dump($log, $pas); 
+include "db-req.php"; 
 
 if ($log and $pas)
     {
