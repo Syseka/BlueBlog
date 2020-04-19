@@ -1,6 +1,6 @@
 <?php
 session_start(); include "db-req.php";
-print "<h2>Вы вошли как жопой об косяк, нахуй. Ну привет, " . $_SESSION['user'] . ", нахуй.</h2>";
+print "<h2>Вы вошли как жопой об косяк. Ну привет, " . $_SESSION['user'] . ", нахуй.</h2>";
 ?>
 <!DOCTYPE html>
 <html>
