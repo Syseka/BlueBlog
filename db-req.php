@@ -109,6 +109,7 @@ function adduser ($l, $p, $db)
 // ПОСТЫ
 // ПОСТЫ
 // ПОСТЫ
+
 function show_posts($db)
 	{
 		$sh_po = $db->prepare(
