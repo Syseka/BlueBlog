@@ -12,8 +12,9 @@ $db_user->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 function logtest ($l, $p, $db)
 {
-	$aut = $db->prepare("SELECT * FROM `user-list` 
-						WHERE `login` = :log"); // `password` = :pas
+	$aut = $db->prepare(
+	"SELECT * FROM `user-list`
+	WHERE `login` = :log"); // `password` = :pas
 	$aut->BindParam(':log', $l);
 	$aut->execute();
 	$fet = $aut->fetchAll(PDO::FETCH_ASSOC);
@@ -24,11 +25,13 @@ if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
 // надо сделать ==> header('tr-posts.php');
 // header не работает, пусть будет ссылка до лучших времен
 				
-			print "Авторизация прошла успешно.<br> 
+			print 
+			"Авторизация прошла успешно.<br> 
 		Пользователь: <font color=#000EE5><b>{$fet[0]['login']}</b></font>, 
 		id: <font color=#e70000><b>{$fet[0]['id']}</b></font><br>
 			А теперь упердывай ==> ";
-			print "<a href='tr-posts.php'>Страница с сообщениями.</a><br>";
+			print 
+			"<a href='tr-posts.php'>Страница с сообщениями.</a><br>";
 
 /*			
 			$host  = $_SERVER['HTTP_HOST'];
@@ -40,7 +43,9 @@ if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
     else
         {
 // при обсере выводит текст и просит повторить ввод
-            print "Данные неверны или что-то пошло не так.<br>Повторите попытку.";
+            print 
+			"Данные неверны или что-то пошло не так.<br>
+			Повторите попытку.";
 			}
 }
 
@@ -53,7 +58,9 @@ if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
 
 function adduser ($l, $p, $db)
 {
-    $prep = $db->prepare("SELECT * FROM `user-list` WHERE `login` = :log");
+    $prep = $db->prepare(
+	"SELECT * FROM `user-list` 
+	WHERE `login` = :log");
     $prep->bindParam(':log', $l);
     $prep->execute();
     $res = $prep->fetchAll(PDO::FETCH_ASSOC);
@@ -63,7 +70,9 @@ function adduser ($l, $p, $db)
 
     if ($res[0]['login'] != $l and $p)
         {
-            $nUs = $db->prepare("INSERT INTO `user-list` (`login`, `password`, `posts`)
+            $nUs = $db->prepare(
+			"INSERT INTO `user-list` 
+			(`login`, `password`, `posts`)
 			VALUES (?, ?, 0)");
             $nUs->bindParam(1, $l);
             $nUs->bindParam(2, $p);
@@ -72,12 +81,16 @@ function adduser ($l, $p, $db)
         if ($adUs)
             {
 // Если execute вернула TRUE => запрос выполнен
-                print "Регистрация прошла успешно.<br>
-				Перейдите на страницу <a href='login.php'>авторизации</a> для входа.";
+                print 
+				"Регистрация прошла успешно.<br>
+				Перейдите на страницу 
+				<a href='login.php'>авторизации</a> для входа.";
             }
 		else
 			{
-				print "Произошла некоторая ошибка. Регистрация не произошла.<br>";
+				print 
+				"Произошла некоторая ошибка. 
+				Регистрация не произошла.<br>";
 			}
         }
     elseif ($p == NULL)
@@ -99,7 +112,10 @@ function adduser ($l, $p, $db)
 // ПОСТЫ
 function show_posts($db)
 	{
-		$sh_po = $db->prepare("SELECT * FROM `postes` ORDER BY `id` DESC");
+		$sh_po = $db->prepare(
+		"SELECT * FROM `postes` 
+		ORDER BY `id` DESC");
+// ORDER BY `id` DESC - сортировка по убыванию
 		$ex_po = $sh_po->execute();
 		$fa_po = $sh_po->fetchAll(PDO::FETCH_ASSOC);
 	
@@ -129,7 +145,7 @@ $n = 0;
 
 function go_post($sp, $nam, $db)
 	{
-		if ($sp)
+		if (!empty($sp))
 			{
 				$ad_po = $db->prepare(
 				"INSERT INTO `postes` (`autor`,`letter`,`type`) 
@@ -137,7 +153,6 @@ function go_post($sp, $nam, $db)
 				$ad_po->BindParam(1, $nam);
 				$ad_po->BindParam(2, $sp);
 				$posEx = $ad_po->execute();
-				
 				//$db->query("INSERT INTO `postes` (`autor`, `letter`, `type`) 
 				//VALUE ('$nam', '$sp', 'type1')");
 			}

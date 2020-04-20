@@ -1,6 +1,6 @@
 <?php
 session_start(); include "db-req.php";
-print "<h2>Вы вошли как жопой об косяк. Ну привет, " . $_SESSION['user'] . ", нахуй.</h2>";
+print "<h2>Ну привет, ". $_SESSION['user'] . ".</h2>";
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,6 +65,7 @@ print "<h2>Вы вошли как жопой об косяк. Ну привет,
 				table-layout:fixed;
 				font-family: lucida console;
 				font-size: 95%;
+				padding: 3px;
 				margin-left: 4px;
 				margin-right: 7px;
 				margin-top: 10px;
@@ -85,7 +86,8 @@ print "<h2>Вы вошли как жопой об косяк. Ну привет,
 	<div class='make_post'>
 		<p>Запости и ты, <b><?php print $_SESSION['user']; ?></b>:</p>
 	<form method='post'>
-        <input size='55' name='txt' type='text' placeholder='Текст письма...'><br>
+        <textarea cols='60' rows='8' wrap='soft' name='txt' 
+		type='text' placeholder='Текст письма...'></textarea><br>
         <button type='sumbit'>Постить</button><br>
     </form>
 	</div>
@@ -93,17 +95,16 @@ print "<h2>Вы вошли как жопой об косяк. Ну привет,
 	<div class='posts'>
 <?php
 $post = $_POST['txt'];
+//$postpr = "<pre>".$post."</pre>";
 $autor = $_SESSION['user'];
 	if(!empty($post))
 		{	
 			go_post($post, $autor, $db_user);
 			show_posts($db_user);
-			exit;
 		}
 	if($_SESSION['user'])
 		{
 			show_posts($db_user);
-			exit;
 		}
 ?>
 	</div>
