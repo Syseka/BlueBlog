@@ -1,0 +1,159 @@
+		input
+			{
+				height: 100px;
+				//zise: 200px;
+				margin: 3px;
+			}
+		.main
+			{
+				margin: 10px;
+			}
+		.make_post
+			{
+				wight: 300px;
+				float: right;
+				border: 2px solid black;
+                padding-left: 7px;
+                padding-right: 7px;
+				background-color: rgba(0, 0, 0, 0.3);
+				margin: 5px;
+				border-radius: 10px;
+			}
+		.posts
+			{
+				wight: 300px;
+				float: left;
+			}
+        .mess
+            {
+                border: 2px solid black;
+                padding-left: 5px;
+				//padding-bottom: 2px;
+				padding-top: 2px;
+                width: 535px; 
+				table-layout: fixed;
+				border-radius: 10px;
+				background-color: rgba(0, 0, 0, 0.3);
+				margin: 5px;
+            }
+		.warn
+			{
+				align: left;
+				border: 2px solid red;
+				padding: 2px;
+				padding-left: 15px;
+				
+			}
+		h2 {
+				padding-bottom: 4px;
+				border-bottom: 1px solid #cccccc;
+			}
+		.mess h3 {
+				padding-bottom: 2px;
+				font-size: 97%;
+				border-bottom: 1px solid #000000;
+				font-family: consolas;
+			}
+		p.head
+			{
+					margin-top: 3px;
+					margin-bottom: 5px;
+			}
+		.typ
+			{
+				align: left;
+			}
+		p.letter
+			{
+				word-wrap: break-word;
+				table-layout:fixed;
+				font-family: lucida console;
+				font-size: 95%;
+				padding: 3px;
+				margin-left: 4px;
+				margin-right: 7px;
+				margin-top: 10px;
+				margin-bottom: 8px;
+				border-bottom: 1px solid #cccccc;
+			}
+		p.autor
+			{
+				margin: 4px;
+				font-size: 90%;
+				font-family: Arial;
+			}		input
+			{
+				height: 100px;
+				//zise: 200px;
+				margin: 3px;
+			}
+		.main
+			{
+				margin: 10px;
+			}
+		.make_post
+			{
+				wight: 300px;
+				float: right;
+				border: 2px solid black;
+                padding-left: 7px;
+                padding-right: 7px;
+				background-color: rgba(0, 0, 0, 0.3);
+				margin: 5px;
+				border-radius: 10px;
+			}
+		.posts
+			{
+				wight: 300px;
+				float: left;
+			}
+        .mess
+            {
+                border: 2px solid black;
+                padding-left: 5px;
+				//padding-bottom: 2px;
+				padding-top: 2px;
+                width: 535px; 
+				table-layout: fixed;
+				border-radius: 10px;
+				background-color: rgba(0, 0, 0, 0.3);
+				margin: 5px;
+            }
+		h2 {
+				padding-bottom: 4px;
+				border-bottom: 1px solid #cccccc;
+			}
+		.mess h3 {
+				padding-bottom: 2px;
+				font-size: 97%;
+				border-bottom: 1px solid #000000;
+				font-family: consolas;
+			}
+		p.head
+			{
+					margin-top: 3px;
+					margin-bottom: 5px;
+			}
+		.typ
+			{
+				align: left;
+			}
+		p.letter
+			{
+				word-wrap: break-word;
+				table-layout:fixed;
+				font-family: lucida console;
+				font-size: 95%;
+				padding: 3px;
+				margin-left: 4px;
+				margin-right: 7px;
+				margin-top: 10px;
+				margin-bottom: 8px;
+				border-bottom: 1px solid #cccccc;
+			}
+		p.autor
+			{
+				margin: 4px;
+				font-size: 90%;
+				font-family: Arial;
+			}
