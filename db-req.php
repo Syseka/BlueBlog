@@ -21,7 +21,6 @@ function logtest ($l, $p, $db)
 	
 if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
 		{
-// при успехе дает доступ на страницу с постами <- ЭТУ СТРАНИЦУ НАДО СДЕЛАТЬ
 // надо сделать ==> header('tr-posts.php');
 // header не работает, пусть будет ссылка до лучших времен
 				
@@ -77,7 +76,7 @@ function adduser ($l, $p, $db)
             $nUs->bindParam(1, $l);
             $nUs->bindParam(2, $p);
             $adUs = $nUs->execute();
-        //var_dump($adUs); echo ' - execute<br>';
+
         if ($adUs)
             {
 // Если execute вернула TRUE => запрос выполнен
@@ -153,8 +152,6 @@ function go_post($sp, $nam, $db)
 				$ad_po->BindParam(1, $nam);
 				$ad_po->BindParam(2, $sp);
 				$posEx = $ad_po->execute();
-				//$db->query("INSERT INTO `postes` (`autor`, `letter`, `type`) 
-				//VALUE ('$nam', '$sp', 'type1')");
 			}
 		else
 			{
