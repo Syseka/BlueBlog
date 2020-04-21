@@ -18,21 +18,23 @@ print "<h2>Ну привет, ". $_SESSION['user'] . ".</h2>";
 
 	<div class='make_post'>
 		<p>Запости и ты, <b><?php print $_SESSION['user']; ?></b>:</p>
+		
 	<form method='post'>
 	
         <textarea cols='60' rows='8' wrap='soft' name='txt' 
-		type='text' placeholder='Текст письма...'></textarea><br>
+		type='text' placeholder='Текст письма...'></textarea>
+		<p>Для постинга нужно набрать сообщение и выбрать типа поста.</p>
 		
-		<button type='sumbit'>Годнопостить</button>
-	
-		<input type="radio" id="type"
-           name="ptype" value="type1">
+	<div class='button'>	
+		<input type="radio" id="type" name="ptype" value="type1">
 		<label for="ptype">Type 1</label>
-		<input type="radio" id="type"
-           name="ptype" value="type2">
+		
+		<input type="radio" id="type" name="ptype" value="type2"> 
 		<label for="ptype">Type 2</label>
-		<p align='center'>Навести бы тут красоту, да?</p>
-    
+	</div><br>
+
+		<button type='sumbit'>Годнопостить</button>
+
 	</form>
 	</div>
 	
@@ -46,10 +48,6 @@ $autor = $_SESSION['user'];
 			go_post($post, $autor, $type, $db_user);
 			
 			show_posts($db_user);
-		}
-	else
-		{
-			print "<p class='warn'>Нет сообщения или не выбран тип поста.</p>";
 		}
 	if($_SESSION['user'])
 		{

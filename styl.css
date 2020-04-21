@@ -1,9 +1,3 @@
-		input
-			{
-				height: 100px;
-				//zise: 200px;
-				margin: 3px;
-			}
 		.main
 			{
 				margin: 10px;
@@ -36,13 +30,19 @@
 				background-color: rgba(0, 0, 0, 0.3);
 				margin: 5px;
             }
+		.button
+			{
+				margin-top: 0px;
+			}
 		.warn
 			{
-				align: left;
-				border: 2px solid red;
-				padding: 2px;
-				padding-left: 15px;
-				
+				align: center;
+				border: 3px solid red;
+			}
+		.warn p
+			{
+				padding: 3px;
+				padding-left: 30px;
 			}
 		h2 {
 				padding-bottom: 4px;
@@ -56,12 +56,13 @@
 			}
 		p.head
 			{
-					margin-top: 3px;
-					margin-bottom: 5px;
+				margin-top: 3px;
+				margin-bottom: 5px;
+				margin-left: 3px;
 			}
 		.typ
 			{
-				align: left;
+				align: right;
 			}
 		p.letter
 			{
