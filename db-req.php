@@ -127,9 +127,10 @@ $n = 0;
 			echo "<div class='mess'>";
 			print 
 		"<p class='head'><b>Сообщение #".$fa_po[$n]['id']." </b>". 
-		"<span class='typ'>Тип:" .$fa_po[$n]['type']."</span></p>".
+		"<span class='typ'>Тип: " .$fa_po[$n]['type']."</span></p>".
 		"<p class='letter'>".$fa_po[$n]['letter']."</p>".
-		"<p class='autor'>от: ".$fa_po[$n]['autor']."</p>";
+		"<p class='autor'>Загоднопостил: <b>".$fa_po[$n]['autor'].
+		"</b> во время: ".$fa_po[$n]['time-post']."</p>";
 		echo "</div>";
 		$n++;
 		}
@@ -142,16 +143,17 @@ $n = 0;
 // ПУБЛИКАЦИЯ
 // ПУБЛИКАЦИЯ
 
-function go_post($sp, $nam, $tp, $db)
+function go_post($sp, $nam, $tp, $tm, $db)
 	{
 		if (!empty($sp))
 			{
 				$ad_po = $db->prepare(
-				"INSERT INTO `postes` (`autor`,`letter`,`type`) 
-				VALUE (?, ?, ?)");
+				"INSERT INTO `postes` (`autor`,`letter`,`type`, `time-post`) 
+				VALUE (?, ?, ?, ?)");
 				$ad_po->BindParam(1, $nam);
 				$ad_po->BindParam(2, $sp);
 				$ad_po->BindParam(3, $tp);
+				$ad_po->BindParam(4, $tm);
 				$posEx = $ad_po->execute();
 			}
 		else

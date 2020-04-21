@@ -43,9 +43,10 @@ print "<h2>Ну привет, ". $_SESSION['user'] . ".</h2>";
 $post = $_POST['txt'];
 $type = $_POST['ptype'];
 $autor = $_SESSION['user'];
+$timep = date("d.m.Y - H:i", time()+4*60*60);
 	if(!empty($post) and !empty($type))
 		{	
-			go_post($post, $autor, $type, $db_user);
+			go_post($post, $autor, $type, $timep, $db_user);
 			
 			show_posts($db_user);
 		}
