@@ -23,7 +23,8 @@ if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
 		{
 // надо сделать ==> header('tr-posts.php');
 // header не работает, пусть будет ссылка до лучших времен
-				
+			$_SESSION['user'] = $fet[0]['login'];
+			//var_dump($_SESSION['user']);
 			print 
 			"Авторизация прошла успешно.<br> 
 		Пользователь: <font color=#000EE5><b>{$fet[0]['login']}</b></font>, 
@@ -112,28 +113,33 @@ function adduser ($l, $p, $db)
 
 function show_posts($db)
 	{
-		$sh_po = $db->prepare(
-		"SELECT * FROM `postes` 
-		ORDER BY `id` DESC");
+		if ($_SESSION['user'])
+			{
+				$sh_po = $db->prepare(
+				"SELECT * FROM `postes` 
+				ORDER BY `id` DESC");
 // ORDER BY `id` DESC - сортировка по убыванию
-		$ex_po = $sh_po->execute();
-		$fa_po = $sh_po->fetchAll(PDO::FETCH_ASSOC);
+				$ex_po = $sh_po->execute();
+				$fa_po = $sh_po->fetchAll(PDO::FETCH_ASSOC);
 	
-$co_po = count($fa_po);
-$n = 0;
+				$co_po = count($fa_po);
+				$n = 0;
 
-	while ($n < $co_po)
-		{
-			echo "<div class='mess'>";
-			print 
-		"<p class='head'><b>Сообщение #".$fa_po[$n]['id']." </b>". 
-		"<span class='typ'>Тип: " .$fa_po[$n]['type']."</span></p>".
-		"<p class='letter'>".$fa_po[$n]['letter']."</p>".
-		"<p class='autor'>Загоднопостил: <b>".$fa_po[$n]['autor'].
-		"</b> во время: ".$fa_po[$n]['time-post']."</p>";
-		echo "</div>";
-		$n++;
-		}
+				while ($n < $co_po)
+					{
+						echo "<div class='mess'>";
+						print 
+						"<p class='head'><b>Сообщение #".$fa_po[$n]['id']." </b>". 
+						"<span class='typ'>Тип: " .$fa_po[$n]['type']."</span></p>".
+						"<p class='letter'>".$fa_po[$n]['letter']."</p>".
+						"<p class='autor'>Годнопостил: <b>".$fa_po[$n]['autor'].
+						"</b> во время: ".$fa_po[$n]['time-post']."</p>";
+						echo "</div>";
+						$n++;
+					}
+			}
+		else
+			{print "Ты не залогинился для годнопостинга.";}
 	}
 	
 	
@@ -154,7 +160,7 @@ function go_post($sp, $nam, $tp, $tm, $db)
 				$ad_po->BindParam(2, $sp);
 				$ad_po->BindParam(3, $tp);
 				$ad_po->BindParam(4, $tm);
-				$posEx = $ad_po->execute();
+				$ad_po->execute();
 			}
 		else
 			{

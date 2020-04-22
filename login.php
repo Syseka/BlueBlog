@@ -18,13 +18,14 @@ session_start();
 		<a href='index.php'>На главную</a><br>
     </form> </div>
 <?php
-$log = $_SESSION['user'] = $_POST['log'];
+$log = $_POST['log'];
 $pas = $_POST['pas'];
 include "db-req.php"; 
 
 if ($log and $pas)
     {
         logtest ($log, $pas, $db_user);
+		
 		exit;
     }
 else

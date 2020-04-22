@@ -1,5 +1,5 @@
 <?php
-session_start(); include "db-req.php";
+session_start(); include "db-req.php"; include "picture/uplpic.php";
 print "<h2>Ну привет, ". $_SESSION['user'] . ".</h2>";
 ?>
 <!DOCTYPE html>
@@ -34,6 +34,7 @@ print "<h2>Ну привет, ". $_SESSION['user'] . ".</h2>";
 	</div><br>
 
 		<button type='sumbit'>Годнопостить</button>
+		<input type='file' name='picture'>
 
 	</form>
 	</div>
@@ -44,16 +45,17 @@ $post = $_POST['txt'];
 $type = $_POST['ptype'];
 $autor = $_SESSION['user'];
 $timep = date("d.m.Y - H:i", time()+4*60*60);
-	if(!empty($post) and !empty($type))
-		{	
-			go_post($post, $autor, $type, $timep, $db_user);
+
+if(!empty($post) and !empty($type))
+	{	
+		go_post($post, $autor, $type, $timep, $db_user);
 			
-			show_posts($db_user);
-		}
-	if($_SESSION['user'])
-		{
-			show_posts($db_user);
-		}
+		show_posts($db_user);
+	}
+if($_SESSION['user'])
+	{
+		show_posts($db_user);
+	}
 ?>
 	</div>
 </div>
