@@ -13,6 +13,14 @@
 				margin: 5px;
 				border-radius: 10px;
 			}
+		.pict
+			{
+				border: 2px #708090;
+				table-layout: fixed;
+				margin-left: 4px;
+				height: 110px;
+				weight: 110px;
+			}
 		.posts
 			{
 				wight: 300px;

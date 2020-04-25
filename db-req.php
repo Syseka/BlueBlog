@@ -130,8 +130,19 @@ function show_posts($db)
 						echo "<div class='mess'>";
 						print 
 						"<p class='head'><b>Сообщение #".$fa_po[$n]['id']." </b>". 
-						"<span class='typ'>Тип: " .$fa_po[$n]['type']."</span></p>".
-						"<p class='letter'>".$fa_po[$n]['letter']."</p>".
+						"<span class='typ'>Тип: " .$fa_po[$n]['type']."</span></p>";
+						
+						
+						if (!empty($fa_po[$n]['pict']))
+							{
+								print "
+								<img class='pict' src='picture/".
+								$fa_po[$n]['pict']."'>";
+							}
+
+						
+						
+						print "<p class='letter'>".$fa_po[$n]['letter']."</p>".
 						"<p class='autor'>Годнопостил: <b>".$fa_po[$n]['autor'].
 						"</b> во время: ".$fa_po[$n]['time-post']."</p>";
 						echo "</div>";
@@ -149,18 +160,25 @@ function show_posts($db)
 // ПУБЛИКАЦИЯ
 // ПУБЛИКАЦИЯ
 
-function go_post($sp, $nam, $tp, $tm, $db)
+function go_post($sp, $nam, $tp, $tm, $fl, $db) // $fl,
 	{
 		if (!empty($sp))
 			{
 				$ad_po = $db->prepare(
-				"INSERT INTO `postes` (`autor`,`letter`,`type`, `time-post`) 
-				VALUE (?, ?, ?, ?)");
+				"INSERT INTO `postes` (`autor`,`letter`,`type`, `time-post`, `pict`) 
+				VALUE (?, ?, ?, ?, ?)");
 				$ad_po->BindParam(1, $nam);
 				$ad_po->BindParam(2, $sp);
 				$ad_po->BindParam(3, $tp);
 				$ad_po->BindParam(4, $tm);
+				$ad_po->BindParam(5, $fl); // `pict`,
 				$ad_po->execute();
+				//$ex = $ad_po->execute();
+				/*if ($ex)
+					{
+						$_POST['txt'] = NULL;
+						$_POST['ptype'] = NULL;
+					}*/
 			}
 		else
 			{
