@@ -11,10 +11,16 @@
 		Регистрация - <a href='regis.php'>Тык</a><br>
 		Годнопосты - <a href='tr-posts.php'>Тык</a><br>
 	</div>
+
+<script>
+
+</script>
+	
 </body>
 </html>
 
 <?php
+
 // .htaccess
 // php_value display_errors on
 // php_value display_startup_errors on

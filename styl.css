@@ -1,168 +1,175 @@
-		.main
-			{
-				margin: 10px;
-			}
-		.make_post
-			{
-				wight: 300px;
-				float: right;
-				border: 2px solid black;
-                padding-left: 7px;
-                padding-right: 7px;
-				background-color: rgba(0, 0, 0, 0.3);
-				margin: 5px;
-				border-radius: 10px;
-			}
-		.pict
-			{
-				border: 2px #708090;
-				table-layout: fixed;
-				margin-left: 4px;
-				height: 130px;
-				wight: 130px;
-			}
-		.posts
-			{
-				wight: 300px;
-				float: left;
-			}
-        .mess
-            {
-                border: 2px solid black;
-                padding-left: 5px;
-				//padding-bottom: 2px;
-				padding-top: 2px;
-                width: 535px; 
-				table-layout: fixed;
-				border-radius: 10px;
-				background-color: rgba(0, 0, 0, 0.3);
-				margin: 5px;
-            }
-		.button
-			{
-				margin-top: 0px;
-			}
-		.warn
-			{
-				align: center;
-				border: 3px solid red;
-			}
-		.warn p
-			{
-				padding: 3px;
-				padding-left: 30px;
-			}
-		h2 {
-				padding-bottom: 4px;
-				border-bottom: 1px solid #cccccc;
-			}
-		.mess h3 {
-				padding-bottom: 2px;
-				font-size: 97%;
-				border-bottom: 1px solid #000000;
-				font-family: consolas;
-			}
-		p.head
-			{
-				margin-top: 3px;
-				margin-bottom: 5px;
-				margin-left: 3px;
-			}
-		.typ
-			{
-				align: right;
-			}
-		p.letter
-			{
-				word-wrap: break-word;
-				table-layout:fixed;
-				font-family: lucida console;
-				font-size: 95%;
-				padding: 3px;
-				margin-left: 4px;
-				margin-right: 7px;
-				margin-top: 10px;
-				margin-bottom: 8px;
-				border-bottom: 1px solid #cccccc;
-			}
-		p.autor
-			{
-				margin: 4px;
-				font-size: 90%;
-				font-family: Arial;
-			}		input
-			{
-				height: 100px;
-				//zise: 200px;
-				margin: 3px;
-			}
-		.main
-			{
-				margin: 10px;
-			}
-		.make_post
-			{
-				wight: 300px;
-				float: right;
-				border: 2px solid black;
-                padding-left: 7px;
-                padding-right: 7px;
-				background-color: rgba(0, 0, 0, 0.3);
-				margin: 5px;
-				border-radius: 10px;
-			}
-		.posts
-			{
-				wight: 300px;
-				float: left;
-			}
-        .mess
-            {
-                border: 2px solid black;
-                padding-left: 5px;
-				//padding-bottom: 2px;
-				padding-top: 2px;
-                width: 535px; 
-				table-layout: fixed;
-				border-radius: 10px;
-				background-color: rgba(0, 0, 0, 0.3);
-				margin: 5px;
-            }
-		h2 {
-				padding-bottom: 4px;
-				border-bottom: 1px solid #cccccc;
-			}
-		.mess h3 {
-				padding-bottom: 2px;
-				font-size: 97%;
-				border-bottom: 1px solid #000000;
-				font-family: consolas;
-			}
-		p.head
-			{
-					margin-top: 3px;
-					margin-bottom: 5px;
-			}
-		.typ
-			{
-				align: left;
-			}
-		p.letter
-			{
-				word-wrap: break-word;
-				table-layout:fixed;
-				font-family: lucida console;
-				font-size: 95%;
-				padding: 3px;
-				margin-left: 4px;
-				margin-right: 7px;
-				margin-top: 10px;
-				margin-bottom: 8px;
-				border-bottom: 1px solid #cccccc;
-			}
-		p.autor
-			{
-				margin: 4px;
-				font-size: 90%;
-				font-family: Arial;
-			}
+.main
+	{
+		margin: 10px;
+	}
+.make_post
+	{
+		wight: 300px;
+		float: right;
+		border: 2px solid black;
+        padding-left: 7px;
+        padding-right: 7px;
+		background-color: rgba(0, 0, 0, 0.3);
+		margin: 5px;
+		border-radius: 10px;
+	}
+.pict
+	{
+		border: 2px #708090;
+		table-layout: fixed; 
+		margin-left: 4px;
+		height: 130px;
+		wight: 130px;
+	}
+.posts
+	{
+		wight: 300px;
+		float: left;
+	}
+iframe
+	{
+		width: 500px;
+		height: 305px;
+	}
+.mess
+    {
+        border: 2px solid black;
+        padding-left: 5px;
+		//padding-bottom: 2px;
+		padding-top: 2px;
+        width: 520px; 
+		table-layout: fixed;
+		border-radius: 10px;
+		background-color: rgba(0, 0, 0, 0.3);
+		margin: 5px;
+    }
+.button
+	{
+		margin-top: 0px;
+	}
+.warn
+	{
+		align: center;
+		border: 3px solid red;
+	}
+.warn p
+	{
+		padding: 3px;
+		padding-left: 30px;
+	}
+h2 
+	{
+		padding-bottom: 4px;
+		border-bottom: 1px solid #cccccc;
+	}
+.mess h3 
+	{
+		padding-bottom: 2px;
+		font-size: 97%;
+		border-bottom: 1px solid #000000;
+		font-family: consolas;
+	}
+p.head
+	{
+		margin-top: 3px;
+		margin-bottom: 5px;
+		margin-left: 3px;
+	}
+.typ
+	{
+		align: right;
+	}
+p.letter
+	{
+		word-wrap: break-word;
+		table-layout:fixed;
+		font-family: lucida console;
+		font-size: 95%;
+		padding: 3px;
+		margin-left: 4px;
+		margin-right: 7px;
+		margin-top: 10px;
+		margin-bottom: 8px;
+		border-bottom: 1px solid #cccccc;
+	}
+p.autor
+	{
+		margin: 4px;
+		font-size: 90%;
+		font-family: Arial;
+	}
+input
+	{
+		height: 100px;
+		//zise: 200px;
+		margin: 3px;
+	}
+h2 
+	{
+		padding-bottom: 4px;
+		border-bottom: 1px solid #cccccc;
+	}
+.mess h3 
+	{
+		padding-bottom: 2px;
+		font-size: 97%;
+		border-bottom: 1px solid #000000;
+		font-family: consolas;
+	}
+p.head
+	{
+		margin-top: 3px;
+		margin-bottom: 5px;
+	}
+.typ
+	{
+		align: left;
+	}
+p.letter
+	{
+		word-wrap: break-word;
+		table-layout:fixed;
+		font-family: lucida console;
+		font-size: 95%;
+		padding: 3px;
+		margin-left: 4px;
+		margin-right: 7px;
+		margin-top: 10px;
+		margin-bottom: 8px;
+		border-bottom: 1px solid #cccccc;
+	}
+p.autor
+	{
+		margin: 4px;
+		font-size: 90%;
+		font-family: Arial;
+	}
+
+// Стиль у картинок	
+
+.popup 
+{
+	position: fixed;
+	height:100%;
+	width:100%;
+	top:0;
+	left:0;
+	display:none;
+	text-align:center;
+}
+.popup_bg 
+{
+	background:rgba(0,0,0,0.4);
+	position:fixed;
+	z-index:1;
+	height:100%;
+	width:100%;
+}
+.popup_img {
+	position: fixed;
+	margin:0 auto;
+	z-index:2;
+	max-height:94%;
+	max-width:94%;
+	margin:1% 0 0 0;
+}
