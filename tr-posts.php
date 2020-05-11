@@ -1,5 +1,7 @@
 <?php
-session_start(); include "db-req.php"; include "picture/uplpic.php";
+session_start(); 
+include "db-req.php"; 
+include "picture/uplpic.php";
 print "<h2>Ну привет, ". $_SESSION['user'] . ".</h2>";
 ?>
 <!DOCTYPE html>
@@ -15,7 +17,7 @@ print "<h2>Ну привет, ". $_SESSION['user'] . ".</h2>";
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
 		</script>
 	<link rel="stylesheet" href="styl.css">
-		<script type="text/javascript" src="pict.js"></script>
+		
 	<title>Посты</title>
 </head>
 
@@ -30,7 +32,7 @@ print "<h2>Ну привет, ". $_SESSION['user'] . ".</h2>";
 		
 	<form method='post' enctype='multipart/form-data'>
 	
-        <textarea cols='55' rows='8' name='txt' 
+        <textarea class='textar' cols='55' rows='8' name='txt' 
 		type='text' placeholder='Текст письма...'></textarea>
 		<p>Для постинга нужно набрать сообщение и выбрать типа поста.</p>
 		
@@ -57,7 +59,7 @@ $file = $_FILES['pict']['name'];
 $autor = $_SESSION['user'];
 $timep = date("d.m.Y - H:i", time()+4*60*60);
 
-if(!empty($post) and !empty($type))
+if(!empty($type) and (!empty($post) or !empty($file)) )
 	{	
 		go_post($post, $autor, $type, $timep, $file, $db_user);
 		show_posts($db_user);
@@ -83,5 +85,6 @@ src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" 
 crossorigin="anonymous"></script> 
 -->
+<script type="text/javascript" src="pict.js"></script>
 </body>
 </html>

@@ -21,7 +21,7 @@ if ($_FILES)
             move_uploaded_file($_FILES['pict']['tmp_name'], 'picture/'.$picn);
 // перемещает файлы в нужную мне папку
         }
-	else echo "'$f_name' — ничего не получено или ты необучаемый.<br>";
+	//else echo "'$f_name' — ничего не получено или ты необучаемый.<br>";
     }
 //var_dump($_FILES); echo "<br><br>";
 ?>

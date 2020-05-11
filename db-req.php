@@ -129,7 +129,7 @@ function show_posts($db)
 					{
 						echo "<div class='mess'>";
 						print 
-						"<p class='head'><b>Сообщение #".$fa_po[$n]['id'].
+						"<p class='head'><b>Пост #".$fa_po[$n]['id'].
 						" </b>". 
 						"<span class='typ'>Тип: " .$fa_po[$n]['type'].
 						"</span></p>";
@@ -162,8 +162,9 @@ function show_posts($db)
 
 function go_post($sp, $nam, $tp, $tm, $fl, $db)
 	{
-		if (!empty($sp))
+		if (!empty($tp))
 			{
+				$sp = strip_tags($sp);
 				$ad_po = $db->prepare(
 				"INSERT INTO `postes` 
 				(`autor`,`letter`,`type`, `time-post`, `pict`) 
