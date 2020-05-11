@@ -27,8 +27,53 @@ print "<h2>Ну привет, ". $_SESSION['user'] . ".</h2>";
 
 <div class='main'>
 
-	<div class='make_post'>
-		<p>Запости и ты, <b><?php print $_SESSION['user']; ?></b>:</p>
+<form method='post' enctype='multipart/form-data' id='thatform'></form>
+
+<table class='make_post'>
+
+	<tr>
+		<th colspan='2'>Запости и ты, <b><?php print $_SESSION['user'];?></b>:</th>
+	</tr>
+	<tr>
+		<td colspan='2'>
+		<textarea form="thatform" class='textar' cols='55' rows='8' name='txt' 
+		type='text' placeholder='Текст письма...'></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td colspan='2'>Для постинга нужно набрать сообщение и выбрать типа поста.</td>
+	</tr>
+	<tr>
+		<td>
+		<input form="thatform" type="radio" id="type" name="ptype" value="type1">
+		<label for="ptype">Type 1</label>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<input form="thatform" type="radio" id="type" name="ptype" value="type2"> 
+		<label for="ptype">Type 2</label>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan='2'>
+			<input form="thatform" type='file' name='pict' 
+			action='picture/uplpic.php'>
+		</td>
+	</tr>
+	<tr>
+		<td colspan='2'>
+			Только файлы форматов: <b>JPG</b>, <b>PNG</b>, <b>GIF</b>
+		</td>
+	</tr>
+	<tr><td colspan='2' align='center'>
+		<button form="thatform" type='sumbit'>Годнопостить</button>
+	</td></tr>
+</table>
+
+	<!-- <div class='make_post'>
+		<p>Запости и ты, <b><?php // print $_SESSION['user']; ?></b>:</p>
 		
 	<form method='post' enctype='multipart/form-data'>
 	
@@ -48,9 +93,9 @@ print "<h2>Ну привет, ". $_SESSION['user'] . ".</h2>";
 		<button type='sumbit'>Годнопостить</button>
 		
 
-	</form>
-	</div>
-	
+	</form> -->
+
+
 	<div class='posts'>
 <?php
 $post = $_POST['txt'];
