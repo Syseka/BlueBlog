@@ -33,7 +33,7 @@ if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
 			print 
 			"<a href='tr-posts.php'>Страница с сообщениями.</a><br>";
 
-/*			
+			/*			
 			$host  = $_SERVER['HTTP_HOST'];
 			$url   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 			$pos="tr-posts.php";
@@ -115,38 +115,115 @@ function show_posts($db)
 	{
 		if ($_SESSION['user'])
 			{
-				$sh_po = $db->prepare(
-				"SELECT * FROM `postes` 
-				ORDER BY `id` DESC");
+				if ($_GET['typo'] == "all" or $_GET['typo'] == NULL)
+				{
+// показывает все посты, если тип не выбран или выбран "все"
+					$sh_po = $db->prepare(
+					"SELECT * FROM `postes` 
+					ORDER BY `id` DESC");
 // ORDER BY `id` DESC - сортировка по убыванию
-				$ex_po = $sh_po->execute();
-				$fa_po = $sh_po->fetchAll(PDO::FETCH_ASSOC);
+					$ex_po = $sh_po->execute();
+					$fa_po = $sh_po->fetchAll(PDO::FETCH_ASSOC);
 	
-				$co_po = count($fa_po);
-				$n = 0;
+					$co_po = count($fa_po);
+					$n = 0;
 
-				while ($n < $co_po)
+					while ($n < $co_po)
+						{	
+							echo "<div class='mess'>";
+							print 
+							"<p class='head'><b>Пост #".$fa_po[$n]['id'].
+							" </b>". 
+							"<span class='typ'>Тип: " .$fa_po[$n]['type'].
+							"</span></p>";
+						
+							if (!empty($fa_po[$n]['pict']))
+								{
+									print "
+									<img class='pict' src='picture/".
+									$fa_po[$n]['pict']."'>";
+								}
+
+							print "<p class='letter'>".$fa_po[$n]['letter']."</p>".
+							"<p class='autor'>Годнопостил: <b>".$fa_po[$n]['autor'].
+							"</b> во время: ".$fa_po[$n]['time-post']."</p>";
+							echo "</div>";
+							$n++;
+						}
+				}
+
+// показывает посты категории 1				
+				elseif ($_GET['typo'] == "type1")
 					{
-						echo "<div class='mess'>";
-						print 
-						"<p class='head'><b>Пост #".$fa_po[$n]['id'].
-						" </b>". 
-						"<span class='typ'>Тип: " .$fa_po[$n]['type'].
-						"</span></p>";
-						
-						
-						if (!empty($fa_po[$n]['pict']))
-							{
-								print "
-								<img class='pict' src='picture/".
-								$fa_po[$n]['pict']."'>";
-							}
+					$sh_po = $db->prepare(
+					"SELECT * FROM `postes` WHERE `type`='type1'
+					ORDER BY `id` DESC");
+// ORDER BY `id` DESC - сортировка по убыванию
+					$ex_po = $sh_po->execute();
+					$fa_po = $sh_po->fetchAll(PDO::FETCH_ASSOC);
+	
+					$co_po = count($fa_po);
+					$n = 0;
 
-						print "<p class='letter'>".$fa_po[$n]['letter']."</p>".
-						"<p class='autor'>Годнопостил: <b>".$fa_po[$n]['autor'].
-						"</b> во время: ".$fa_po[$n]['time-post']."</p>";
-						echo "</div>";
-						$n++;
+					while ($n < $co_po)
+						{	
+							echo "<div class='mess'>";
+							print 
+							"<p class='head'><b>Пост #".$fa_po[$n]['id'].
+							" </b>". 
+							"<span class='typ'>Тип: " .$fa_po[$n]['type'].
+							"</span></p>";
+						
+							if (!empty($fa_po[$n]['pict']))
+								{
+									print "
+									<img class='pict' src='picture/".
+									$fa_po[$n]['pict']."'>";
+								}
+
+							print "<p class='letter'>".$fa_po[$n]['letter']."</p>".
+							"<p class='autor'>Годнопостил: <b>".$fa_po[$n]['autor'].
+							"</b> во время: ".$fa_po[$n]['time-post']."</p>";
+							echo "</div>";
+							$n++;
+						}
+					}				
+
+// показывает посты категории 2					
+				elseif ($_GET['typo'] == "type2")
+					{
+					$sh_po = $db->prepare(
+					"SELECT * FROM `postes` WHERE `type`='type2'
+					ORDER BY `id` DESC");
+// ORDER BY `id` DESC - сортировка по убыванию
+					$ex_po = $sh_po->execute();
+					$fa_po = $sh_po->fetchAll(PDO::FETCH_ASSOC);
+	
+					$co_po = count($fa_po);
+					$n = 0;
+
+					while ($n < $co_po)
+						{	
+							echo "<div class='mess'>";
+							print 
+							"<p class='head'><b>Пост #".$fa_po[$n]['id'].
+							" </b>". 
+							"<span class='typ'>Тип: " .$fa_po[$n]['type'].
+							"</span></p>";
+						
+							if (!empty($fa_po[$n]['pict']))
+								{
+									print "
+									<img class='pict' src='picture/".
+									$fa_po[$n]['pict']."'>";
+								}
+
+							print "<p class='letter'>".$fa_po[$n]['letter']."</p>".
+							"<p class='autor'>Годнопостил: <b>".$fa_po[$n]['autor'].
+							"</b> во время: ".$fa_po[$n]['time-post']."</p>";
+							echo "</div>";
+							$n++;
+						}
 					}
 			}
 		else
@@ -181,3 +258,25 @@ function go_post($sp, $nam, $tp, $tm, $fl, $db)
 				print "Нечего постить.";
 			}
 	}
+
+
+
+
+
+/*
+$dataEducation = $connection->query("SELECT * FROM education");
+$dataEducation = $dataEducation->fetchAll(PDO::FETCH_ASSOC);
+
+$coun = count($dataEducation);
+$n = 0;
+
+	while ($n < $coun)
+	{
+		echo 
+		$edu[$n]['faculty'] . 
+		$edu[$n]['univercity'] . 
+		$edu[$n]['yeatStart'] . 
+		$edu[$n]['yearEnd'] . 
+		'<br>';
+    }
+*/

@@ -2,54 +2,103 @@
 session_start(); 
 include "db-req.php"; 
 include "picture/uplpic.php";
-print "<h2>Ну привет, ". $_SESSION['user'] . ".</h2>";
+print "
+<div class='navigate' style='position: sticky;'>
+<form method='get' name='type' id='typp'></form>
+<table>
+    <tbody>
+	<tr>
+        <td>
+            <span class='hith'>
+            Ну привет, <b>". $_SESSION['user'] . "</b>.
+            </span>
+        </td>
+        <td> 
+			<span class='hith'> <a href='index.php'><b>На главную</b></a></span>
+		</td>
+		<td>
+			<span class='hith'><a href='tr-posts.php'><b>Обновить</b></a></span>
+		</td>
+        <td style='width: 70px;'>
+            <img src='picture/1412262571_634760635.gif' 
+			style='
+            width: 50%;
+            align: right;'>
+        </td>
+
+<td>
+    Категория: 
+</td>
+    <td>
+    <input type='radio' id='type' name='typo' value='type1' form='typp'>
+    <label for='ptype'>Type 1</label>
+</td>
+    
+    <td><input type='radio' id='type' name='typo' value='type2' form='typp'>
+    <label for='ptype'>Type 2</label>
+</td>
+    
+    <td><input type='radio' id='type' name='typo' value='all' form='typp'>
+    <label for='type'>Все</label><br>
+    <button type='sumbit' form='typp'>Показать</button>
+</td>
+	
+     </tr>
+</tbody></table></div>";
+
+//<div><h2>Ну привет, ".$_SESSION['user'].".</h2></div>;
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset='utf8'>
-	<!-- <link rel="stylesheet" 
+	<!--<link rel='stylesheet' 
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
-	crossorigin="anonymous"> -->
+	crossorigin="anonymous">-->
 		<script 
 		type="text/javascript" 
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
 		</script>
-	<link rel="stylesheet" href="styl.css">
+	 <link rel="stylesheet" href="styl.css"> 
 		
 	<title>Посты</title>
 </head>
 
-<body style= "background: #D8D8D8">
-
-<p> <a href='index.php'>На главную</a> <a href='tr-posts.php'>Обновить</a></p>
+<body style= "
+	background: #D8D8D8; 
+	padding: 0;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;">
 
 <div class='main'>
 
 <form method='post' enctype='multipart/form-data' id='thatform'></form>
 
 <table class='make_post'>
-
 	<tr>
 		<th colspan='2'>Запости и ты, <b><?php print $_SESSION['user'];?></b>:</th>
+		<td>
+			<span><a href='tr-posts.php'><b>Обновить</b></a></span>
+		</td>
 	</tr>
 	<tr>
-		<td colspan='2'>
+		<td colspan='3'>
 		<textarea form="thatform" class='textar' cols='55' rows='8' name='txt' 
 		type='text' placeholder='Текст письма...'></textarea>
 		</td>
 	</tr>
 	<tr>
-		<td colspan='2'>Для постинга нужно набрать сообщение и выбрать типа поста.</td>
+		<td colspan='3'>Для постинга нужно набрать сообщение и выбрать тип поста.</td>
 	</tr>
 	<tr>
 		<td>
 		<input form="thatform" type="radio" id="type" name="ptype" value="type1">
 		<label for="ptype">Type 1</label>
 		</td>
-	</tr>
-	<tr>
+
+
 		<td>
 		<input form="thatform" type="radio" id="type" name="ptype" value="type2"> 
 		<label for="ptype">Type 2</label>
@@ -57,17 +106,17 @@ print "<h2>Ну привет, ". $_SESSION['user'] . ".</h2>";
 	</tr>
 	
 	<tr>
-		<td colspan='2'>
+		<td colspan='3'>
 			<input form="thatform" type='file' name='pict' 
 			action='picture/uplpic.php'>
 		</td>
 	</tr>
 	<tr>
-		<td colspan='2'>
+		<td colspan='3'>
 			Только файлы форматов: <b>JPG</b>, <b>PNG</b>, <b>GIF</b>
 		</td>
 	</tr>
-	<tr><td colspan='2' align='center'>
+	<tr><td colspan='3' align='center'>
 		<button form="thatform" type='sumbit'>Годнопостить</button>
 	</td></tr>
 </table>
