@@ -39,7 +39,9 @@ print "
 </td>
     
     <td><input type='radio' id='type' name='typo' value='all' form='typp'>
-    <label for='type'>Все</label><br>
+</td>
+
+    <td><label for='type'>Все</label><br>
     <button type='sumbit' form='typp'>Показать</button>
 </td>
 	
