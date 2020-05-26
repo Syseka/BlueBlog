@@ -29,7 +29,7 @@ if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
 			"Авторизация прошла успешно.<br> 
 		Пользователь: <font color=#000EE5><b>{$fet[0]['login']}</b></font>, 
 		id: <font color=#e70000><b>{$fet[0]['id']}</b></font><br>
-			А теперь упердывай ==> ";
+			А теперь иди постить-годнопостить ==> ";
 			print 
 			"<a href='tr-posts.php'>Страница с сообщениями.</a><br>";
 
@@ -96,12 +96,12 @@ function adduser ($l, $p, $db)
     elseif ($p == NULL)
         {
 // если не введен пароль
-			print "Нужен пароль.<br>";
+			print "Нужен пароль<br>";
         }
 // Введенный логин совпал с тем, что БД
     elseif($res[0]['login'] == $l)
         {
-            print "Имя <b>$l</b> уже занято.<br>";
+            print "<b>Имя</b> <font color='black'>$l</font><b> уже занято.</b><br>";
         }
 }
 

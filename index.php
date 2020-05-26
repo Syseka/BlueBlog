@@ -19,11 +19,23 @@ session_start();
 		Регистрация - <a href='regis.php'>Тык</a><br>
 		Годнопосты - <a href='tr-posts.php'>Тык</a><br>
 	</div> -->
-<main>	
+<div style='
+	margin-top: 14%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid black;
+    width: fit-content;
+'>
+<table cellpadding='8px' 
+	style='
+		margin: 4%;		
+'>
+<tr>
+<td>
 <div style="
-	padding: 1%;
-	margin-left: 32%;
-	margin-top: 15%;
+	padding: 2%;
 	border-right: 2px solid grey;
 	float: left;
 ">
@@ -34,13 +46,13 @@ session_start();
         <button type="sumbit" class="btn-block">Регистрация</button><br>
     </form>
 </div>
+</td>
 
+<td>
 <div style="
-    padding: 1%;
-    margin-right: 32%;
-    margin-top: 15%;
+    padding: 2%;
     border-left: 2px solid grey;
-    float: right;
+	float: right;
     ">
      
     <form method="post" class="form-signin">
@@ -50,14 +62,19 @@ session_start();
         <button type="sumbit" class="btn-block">Войти</button><br>
     </form>
 </div>
-</main>
+</td>
+</tr>
 
-
-<div style="
-    height: 10%;
-    width: 20%;
-    margin: auto;
+<tr>
+<td colspan='2' cellspacing='1px' style="
+    border-style: dashed;
+	border-width: 2px;
+	border-radius: 10px;
+	border-color: red;
+	margin: 9px;
+	color: red;
 ">
+<div>
 <?php
 $log = $_POST['rlog'];
 $pas = $_POST['rpas'];
@@ -85,5 +102,8 @@ else
 	}
 ?>
 </div>
+</td></tr>
+
+</table></div>
 </body>
 </html>
