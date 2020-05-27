@@ -21,12 +21,12 @@ session_start();
 	</div> -->
 <div style='
 	margin-top: 14%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 32%;
+    margin-right: 32%;
     border-radius: 15px;
     background-color: rgba(0, 0, 0, 0.3);
     border: 2px solid black;
-    width: fit-content;
+    width: max-content;
 '>
 <table cellpadding='8px' 
 	style='
@@ -72,7 +72,7 @@ session_start();
 	border-radius: 10px;
 	border-color: red;
 	margin: 9px;
-	color: red;
+	//color: red;
 ">
 <div>
 <?php
