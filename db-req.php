@@ -16,37 +16,164 @@ function logtest ($l, $p, $db)
 	"SELECT * FROM `user-list`
 	WHERE `login` = :log"); // `password` = :pas
 	$aut->BindParam(':log', $l);
-	$aut->execute();
+	$ex = $aut->execute();
 	$fet = $aut->fetchAll(PDO::FETCH_ASSOC);
-	
-if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
-		{
-// надо сделать ==> header('tr-posts.php');
-// header не работает, пусть будет ссылка до лучших времен
-			$_SESSION['user'] = $fet[0]['login'];
-			//var_dump($_SESSION['user']);
-			print 
-			"Авторизация прошла успешно.<br> 
-		Пользователь: <font color=#000EE5><b>{$fet[0]['login']}</b></font>, 
-		id: <font color=#e70000><b>{$fet[0]['id']}</b></font><br>
-			А теперь иди постить-годнопостить ==> ";
-			print 
-			"<a href='tr-posts.php'>Страница с сообщениями.</a><br>";
 
-			/*			
-			$host  = $_SERVER['HTTP_HOST'];
-			$url   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-			$pos="tr-posts.php";
-			header("Location: http://$host$url/$pos");
-			exit;*/
+// Форма заполнена:
+	if ($l and $p)
+	{
+// Логин и пароль совпали с БД:
+		if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
+		{
+			$aut = $db->prepare(
+			"SELECT COUNT(*) FROM `user-list`
+			WHERE `autor` = :log"); // `password` = :pas
+			$aut->BindParam(':log', $l);
+			$ex = $aut->execute();
+			$fet = $aut->fetchAll(PDO::FETCH_ASSOC);
+			
+			
+			$_SESSION['user'] = $fet[0]['login'];
+			
+			print "<table align='center' cellpadding='5px' style='
+			margin-top: 12%;
+			border-radius: 15px;
+			background-color: rgba(0, 0, 0, 0.3);
+			border: 2px solid black;
+			width: max-content;'>
+		
+			<tbody>
+			<tr>
+				<th>Профиль {$l}</th>
+			</tr>
+			<tr>
+				<td>Имя: </td><td>{$l}</td>
+			</tr>
+			<tr>
+				<td>Еще какая-нибудь инфа про: </td><td>{$l}</td>
+			</tr>
+			<tr>
+				<td colspan='2'><a href='tr-posts.php'>Страница с сообщениями.</a></td>
+			</tr>
+			</tbody></table>";
         }
-    else
-        {
-// при обсере выводит текст и просит повторить ввод
-            print 
-			"Данные неверны или что-то пошло не так.<br>
-			Повторите попытку.";
-			}
+// Логин или пароль не верно введен:
+		elseif ($fet[0]['login'] != $l or $fet[0]['password'] != $p)
+		{
+			print "
+			<table align='center' cellpadding='5px' 
+			style='
+			margin-top: 12%;
+			border-radius: 15px;
+			background-color: rgba(0, 0, 0, 0.3);
+			border: 2px solid black;
+			width: max-content;'>
+
+			<tr>
+				<td>
+				<div style='
+				padding: 2%;
+				border-right: 2px solid grey;
+				float: left;'>
+			<form method='post' class='form-signin'>
+				<h1 class='h3 mb-3 font-weight-normal'>Регистрация</h1>
+				<input class='form-control' name='rlog' type='text' placeholder='Логин'><br>
+				<input class='form-control' name='rpas' type='password' placeholder='Пароль'><br>
+				<button type='submit' value='true' name='rbtn' class='btn-block'>Регистрация</button><br>
+			</form>
+			</div>
+				</td>
+
+				<td>
+				<div style='
+				padding: 2%;
+				border-left: 2px solid grey;
+				float: right;'>
+     
+				<form method='post' class='form-signin'>
+					<h1 class='h3 mb-3 font-weight-normal'>Авторизация</h1>
+					<input class='form-control' name='alog' type='text' placeholder='Логин'><br>
+					<input class='form-control' name='apas' type='password' placeholder='Пароль'><br>
+					<button type='submit' value='true' name='abtn' class='btn-block'>Войти</button><br>
+				</form>
+				</div>
+				</td>
+			</tr>
+
+			<tr>
+				<!-- <div style=' 
+				border-style: dashed;
+				border-width: 2px; 
+				border-radius: 10px;
+				border-color: red;
+				margin: 9px;
+				//color: red;'> -->
+	
+				<td colspan='2'>
+				Логин или пароль введен неверно.</td>
+
+			</div></tr>";
+		}
+	}
+// Пустая форма:
+	else
+		{
+			print "
+			<table align='center' cellpadding='5px' 
+			style='
+			margin-top: 12%;
+			border-radius: 15px;
+			background-color: rgba(0, 0, 0, 0.3);
+			border: 2px solid black;
+			width: max-content;'>
+
+			<tr>
+				<td>
+				<div style='
+				padding: 2%;
+				border-right: 2px solid grey;
+				float: left;'>
+			<form method='post' class='form-signin'>
+				<h1 class='h3 mb-3 font-weight-normal'>Регистрация</h1>
+				<input class='form-control' name='rlog' type='text' placeholder='Логин'><br>
+				<input class='form-control' name='rpas' type='password' placeholder='Пароль'><br>
+				<button type='submit' value='true' name='rbtn' class='btn-block'>Регистрация</button><br>
+			</form>
+			</div>
+				</td>
+
+				<td>
+				<div style='
+				padding: 2%;
+				border-left: 2px solid grey;
+				float: right;'>
+     
+				<form method='post' class='form-signin'>
+					<h1 class='h3 mb-3 font-weight-normal'>Авторизация</h1>
+					<input class='form-control' name='alog' type='text' placeholder='Логин'><br>
+					<input class='form-control' name='apas' type='password' placeholder='Пароль'><br>
+					<button type='submit' value='true' name='abtn' class='btn-block'>Войти</button><br>
+				</form>
+				</div>
+				</td>
+			</tr>
+
+			<tr>
+				<!-- <div style='
+				border-style: dashed;
+				border-width: 2px; 
+				border-radius: 10px;
+				border-color: red;
+				margin: 9px;
+				//color: red;'> -->
+	
+				<td colspan='2'>Данные не введены.</td></div>
+			</tr>";
+		}
+		/*var_dump($fet[0]['login']);
+		var_dump($l);
+		var_dump($aut);*/
+		
 }
 
 
@@ -81,9 +208,57 @@ function adduser ($l, $p, $db)
         if ($adUs)
             {
 // Если execute вернула TRUE => запрос выполнен
-                print 
-				"Регистрация прошла успешно.<br>
-				Нужно авторизоваться.";
+                print "
+			<table align='center' cellpadding='5px' 
+			style='
+			margin-top: 12%;
+			border-radius: 15px;
+			background-color: rgba(0, 0, 0, 0.3);
+			border: 2px solid black;
+			width: max-content;'>
+
+			<tr>
+				<td>
+				<div style='
+				padding: 2%;
+				border-right: 2px solid grey;
+				float: left;'>
+			<form method='post' class='form-signin'>
+				<h1 class='h3 mb-3 font-weight-normal'>Регистрация</h1>
+				<input class='form-control' name='rlog' type='text' placeholder='Логин'><br>
+				<input class='form-control' name='rpas' type='password' placeholder='Пароль'><br>
+				<button type='submit' value='true' name='rbtn' class='btn-block'>Регистрация</button><br>
+			</form>
+			</div>
+				</td>
+
+				<td>
+				<div style='
+				padding: 2%;
+				border-left: 2px solid grey;
+				float: right;'>
+     
+				<form method='post' class='form-signin'>
+					<h1 class='h3 mb-3 font-weight-normal'>Авторизация</h1>
+					<input class='form-control' name='alog' type='text' placeholder='Логин'><br>
+					<input class='form-control' name='apas' type='password' placeholder='Пароль'><br>
+					<button type='submit' value='true' name='abtn' class='btn-block'>Войти</button><br>
+				</form>
+				</div>
+				</td>
+			</tr>
+
+			<tr>
+				<!-- <div style='
+				border-style: dashed;
+				border-width: 2px; 
+				border-radius: 10px;
+				border-color: red;
+				margin: 9px;
+				//color: red;'> -->
+	
+				<td colspan='2'>Регистрация прошла успешно.<br>Нужно авторизоваться.</td></div>
+				</tr>";
             }
 		else
 			{
@@ -92,15 +267,115 @@ function adduser ($l, $p, $db)
 				Регистрация не произошла.<br>";
 			}
         }
-    elseif ($p == NULL)
-        {
-// если не введен пароль
-			print "Нужен пароль<br>";
+    elseif ($p == NULL or $l == NULL)
+        { 
+// если не введен пароль или логин
+			print "
+			<table align='center' cellpadding='5px' 
+			style='
+			margin-top: 12%;
+			border-radius: 15px;
+			background-color: rgba(0, 0, 0, 0.3);
+			border: 2px solid black;
+			width: max-content;'>
+
+			<tr>
+				<td>
+				<div style='
+				padding: 2%;
+				border-right: 2px solid grey;
+				float: left;'>
+			<form method='post' class='form-signin'>
+				<h1 class='h3 mb-3 font-weight-normal'>Регистрация</h1>
+				<input class='form-control' name='rlog' type='text' placeholder='Логин'><br>
+				<input class='form-control' name='rpas' type='password' placeholder='Пароль'><br>
+				<button type='submit' value='true' name='rbtn' class='btn-block'>Регистрация</button><br>
+			</form>
+			</div>
+				</td>
+
+				<td>
+				<div style='
+				padding: 2%;
+				border-left: 2px solid grey;
+				float: right;'>
+     
+				<form method='post' class='form-signin'>
+					<h1 class='h3 mb-3 font-weight-normal'>Авторизация</h1>
+					<input class='form-control' name='alog' type='text' placeholder='Логин'><br>
+					<input class='form-control' name='apas' type='password' placeholder='Пароль'><br>
+					<button type='submit' value='true' name='abtn' class='btn-block'>Войти</button><br>
+				</form>
+				</div>
+				</td>
+			</tr>
+
+			<tr>
+				<!-- <div style='
+				border-style: dashed;
+				border-width: 2px; 
+				border-radius: 10px;
+				border-color: red;
+				margin: 9px;
+				//color: red;'> -->
+	
+				<td colspan='2'>Нужен логин и пароль.</td></div>
+				</tr>";
         }
 // Введенный логин совпал с тем, что БД
     elseif($res[0]['login'] == $l)
         {
-            print "<b>Имя</b> <font color='black'>$l</font><b> уже занято.</b><br>";
+            print "
+			<table align='center' cellpadding='5px' 
+			style='
+			margin-top: 12%;
+			border-radius: 15px;
+			background-color: rgba(0, 0, 0, 0.3);
+			border: 2px solid black;
+			width: max-content;'>
+
+			<tr>
+				<td>
+				<div style='
+				padding: 2%;
+				border-right: 2px solid grey;
+				float: left;'>
+			<form method='post' class='form-signin'>
+				<h1 class='h3 mb-3 font-weight-normal'>Регистрация</h1>
+				<input class='form-control' name='rlog' type='text' placeholder='Логин'><br>
+				<input class='form-control' name='rpas' type='password' placeholder='Пароль'><br>
+				<button type='submit' value='true' name='rbtn' class='btn-block'>Регистрация</button><br>
+			</form>
+			</div>
+				</td>
+
+				<td>
+				<div style='
+				padding: 2%;
+				border-left: 2px solid grey;
+				float: right;'>
+     
+				<form method='post' class='form-signin'>
+					<h1 class='h3 mb-3 font-weight-normal'>Авторизация</h1>
+					<input class='form-control' name='alog' type='text' placeholder='Логин'><br>
+					<input class='form-control' name='apas' type='password' placeholder='Пароль'><br>
+					<button type='submit' value='true' name='abtn' class='btn-block'>Войти</button><br>
+				</form>
+				</div>
+				</td>
+			</tr>
+
+			<tr>
+				<!-- <div style='
+				border-style: dashed;
+				border-width: 2px; 
+				border-radius: 10px;
+				border-color: red;
+				margin: 9px;
+				//color: red;'> -->
+	
+				<td colspan='2'>Имя <b><font color='black'>$l</font></b> уже занято.<br></td></div>
+				</tr>";
         }
 }
 
@@ -135,7 +410,7 @@ function show_posts($db)
 						print 
 						"<p class='head'><b>Пост #".$fa_po[$n]['id'].
 						" </b>". 
-						"<span class='typ'>Тип: " .$fa_po[$n]['type'].							"</span></p>";
+						"<span class='typ'>Тип: " .$fa_po[$n]['type']. "</span></p>";
 	
 						if (!empty($fa_po[$n]['pict']))
 						{
