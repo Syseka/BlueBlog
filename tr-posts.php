@@ -1,5 +1,4 @@
 <?php
-//123
 session_start(); 
 include "db-req.php"; 
 include "picture/uplpic.php";
@@ -79,8 +78,6 @@ print "
 if ($_SESSION['user'])
 	{
 	print "
-
-
 <body style='
 	background: #D8D8D8; 
 	padding: 0;

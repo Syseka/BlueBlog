@@ -42,14 +42,14 @@ $rpas = $_POST['rpas'];
 if ( $_POST['abtn'] ) 
 	{
 		logtest ($alog, $apas, $db_user);
-		exit;
+		//exit;
 	}
 	
 // РЕГИСТРАЦИЯ
 elseif ( $_POST['rbtn'] )
     {
         adduser ($rlog, $rpas, $db_user);
-		exit;
+		//exit;
     }
 	
 // ПО УМОЛЧАНИЮ

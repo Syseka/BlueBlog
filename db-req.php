@@ -5,6 +5,9 @@ include 'notes.php';
 $db_user = new PDO ( $infdb, $logdb, $passdb);
 $db_user->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+
+
+
 // АВТОРИЗАЦИЯ
 // АВТОРИЗАЦИЯ
 // АВТОРИЗАЦИЯ
@@ -20,9 +23,14 @@ function logtest ($l, $p, $db)
 	$fet = $aut->fetchAll(PDO::FETCH_ASSOC);
 
 // Форма заполнена:
-	if ($l and $p)
+	if ($l or $p)
 	{
+
+		print "<p>БД: {$fet[0]['login']} {$fet[0]['password']}</p>
+			<p>Форма: {$l} {$p}</p>";
+		print "<p>Session: {$_SESSION['user']}</p>";
 // Логин и пароль совпали с БД:
+// Не срабатывает.
 		if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
 		{
 			$aut = $db->prepare(
@@ -31,9 +39,10 @@ function logtest ($l, $p, $db)
 			$aut->BindParam(':log', $l);
 			$ex = $aut->execute();
 			$fet = $aut->fetchAll(PDO::FETCH_ASSOC);
-			
-			
+
 			$_SESSION['user'] = $fet[0]['login'];
+			
+			//header("Location: tr-posts.php");
 			
 			print "<table align='center' cellpadding='5px' style='
 			margin-top: 12%;
@@ -44,7 +53,7 @@ function logtest ($l, $p, $db)
 		
 			<tbody>
 			<tr>
-				<th>Профиль {$l}</th>
+				<td>Профиль {$l}</td>
 			</tr>
 			<tr>
 				<td>Имя: </td><td>{$l}</td>
@@ -53,7 +62,7 @@ function logtest ($l, $p, $db)
 				<td>Еще какая-нибудь инфа про: </td><td>{$l}</td>
 			</tr>
 			<tr>
-				<td colspan='2'><a href='tr-posts.php'>Страница с сообщениями.</a></td>
+				<td><a href='tr-posts.php'>Страница с сообщениями.</a></td>
 			</tr>
 			</tbody></table>";
         }
@@ -167,7 +176,7 @@ function logtest ($l, $p, $db)
 				margin: 9px;
 				//color: red;'> -->
 	
-				<td colspan='2'>Данные не введены.</td></div>
+				<td colspan='2'><b>[Авторизация]</b>: Данные не введены.</td></div>
 			</tr>";
 		}
 		/*var_dump($fet[0]['login']);
@@ -175,6 +184,7 @@ function logtest ($l, $p, $db)
 		var_dump($aut);*/
 		
 }
+
 
 
 
@@ -319,7 +329,7 @@ function adduser ($l, $p, $db)
 				margin: 9px;
 				//color: red;'> -->
 	
-				<td colspan='2'>Нужен логин и пароль.</td></div>
+				<td colspan='2'><b>[Регистрация]</b>: Данные не введены.</td></div>
 				</tr>";
         }
 // Введенный логин совпал с тем, что БД
