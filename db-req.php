@@ -17,54 +17,56 @@ function logtest ($l, $p, $db)
 {
 	$aut = $db->prepare(
 	"SELECT * FROM `user-list`
-	WHERE `login` = :log"); // `password` = :pas
+	WHERE `login` = :log;"); // `password` = :pas
 	$aut->BindParam(':log', $l);
-	$ex = $aut->execute();
+	$aut->execute();
 	$fet = $aut->fetchAll(PDO::FETCH_ASSOC);
 
+	$con = $db->prepare("
+		SELECT COUNT(`autor`) 
+		AS `count` 
+		FROM `postes` 
+		WHERE `autor` = :log");
+	$con->BindParam(':log', $l);
+	$con->execute();
+	$fcon = $con->fetchAll(PDO::FETCH_ASSOC);
+// результат из запроса		
+	$count = $fcon[0]['count'];
 // Форма заполнена:
 	if ($l or $p)
 	{
 
-		print "<p>БД: {$fet[0]['login']} {$fet[0]['password']}</p>
+		/*print "<p>БД: {$fet[0]['login']} {$fet[0]['password']}</p>
 			<p>Форма: {$l} {$p}</p>";
-		print "<p>Session: {$_SESSION['user']}</p>";
+		print "<p>Session: {$_SESSION['user']}</p>";*/
 // Логин и пароль совпали с БД:
-// Не срабатывает.
 		if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
 		{
-			$aut = $db->prepare(
-			"SELECT COUNT(*) FROM `user-list`
-			WHERE `autor` = :log"); // `password` = :pas
-			$aut->BindParam(':log', $l);
-			$ex = $aut->execute();
-			$fet = $aut->fetchAll(PDO::FETCH_ASSOC);
-
 			$_SESSION['user'] = $fet[0]['login'];
 			
-			//header("Location: tr-posts.php");
-			
-			print "<table align='center' cellpadding='5px' style='
+			print "<table align='center' cellpadding='15px' style='
 			margin-top: 12%;
-			border-radius: 15px;
 			background-color: rgba(0, 0, 0, 0.3);
 			border: 2px solid black;
 			width: max-content;'>
 		
 			<tbody>
 			<tr>
-				<td>Профиль {$l}</td>
-			</tr>
-			<tr>
 				<td>Имя: </td><td>{$l}</td>
 			</tr>
 			<tr>
-				<td>Еще какая-нибудь инфа про: </td><td>{$l}</td>
+				<td>Число постов: </td><td>{$count}</td>
 			</tr>
 			<tr>
-				<td><a href='tr-posts.php'>Страница с сообщениями.</a></td>
+				<td colspan='2'>
+				<a href='tr-posts.php'><span style='background: white;'>Страница с сообщениями.</span></a>
+				</td>
 			</tr>
 			</tbody></table>";
+			
+
+			
+			
         }
 // Логин или пароль не верно введен:
 		elseif ($fet[0]['login'] != $l or $fet[0]['password'] != $p)

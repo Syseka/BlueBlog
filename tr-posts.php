@@ -72,19 +72,19 @@ print "
 </td>
 	
      </tr>
-</tbody></table></div>";
+</tbody></table></div>
 
-//<div><h2>Ну привет, ".$_SESSION['user'].".</h2></div>;
-if ($_SESSION['user'])
-	{
-	print "
 <body style='
 	background: #D8D8D8; 
 	padding: 0;
     margin-top: 0px;
     margin-right: 0px;
-    margin-left: 0px;'>
+    margin-left: 0px;'>";
 
+//<div><h2>Ну привет, ".$_SESSION['user'].".</h2></div>;
+if ($_SESSION['user'])
+	{
+	print "
 <div class='main'>
 
 <form method='post' enctype='multipart/form-data' id='thatform'></form>
