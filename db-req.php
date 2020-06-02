@@ -22,6 +22,7 @@ function logtest ($l, $p, $db)
 	$aut->execute();
 	$fet = $aut->fetchAll(PDO::FETCH_ASSOC);
 
+//  число постов у полльзователя с логиином :log
 	$con = $db->prepare("
 		SELECT COUNT(`autor`) 
 		AS `count` 
@@ -29,16 +30,35 @@ function logtest ($l, $p, $db)
 		WHERE `autor` = :log");
 	$con->BindParam(':log', $l);
 	$con->execute();
-	$fcon = $con->fetchAll(PDO::FETCH_ASSOC);
-// результат из запроса		
+	$fcon = $con->fetchAll(PDO::FETCH_ASSOC);	
 	$count = $fcon[0]['count'];
+
+// дата последнего сообщения от юзера :log
+	$tim = $db->prepare("
+		SELECT `time-post` AS `time`
+		FROM `postes` 
+		WHERE `autor` = :log 
+		ORDER BY `id` DESC");
+	$tim->BindParam(':log', $l);
+	$tim->execute();
+	$ftim = $tim->fetchAll(PDO::FETCH_ASSOC);
+
+// если массивы не пустые:	
+		if ($ftim[0]['time'] and $fcon[0]['count'])
+			{
+				$count = $fcon[0]['count'];
+				$time = $ftim[0]['time'];
+			}
+// в ином случае переменные счета и времени получают это:
+		else
+			{
+				$count = "Постов нет.";
+				$time = "Постов нет.";
+			}
+	
 // Форма заполнена:
 	if ($l or $p)
 	{
-
-		/*print "<p>БД: {$fet[0]['login']} {$fet[0]['password']}</p>
-			<p>Форма: {$l} {$p}</p>";
-		print "<p>Session: {$_SESSION['user']}</p>";*/
 // Логин и пароль совпали с БД:
 		if ($fet[0]['login'] == $l and $fet[0]['password'] == $p)
 		{
@@ -58,15 +78,14 @@ function logtest ($l, $p, $db)
 				<td>Число постов: </td><td>{$count}</td>
 			</tr>
 			<tr>
+				<td>Последний пост: </td><td>{$time}</td>
+			</tr>
+			<tr>
 				<td colspan='2'>
 				<a href='tr-posts.php'><span style='background: white;'>Страница с сообщениями.</span></a>
 				</td>
 			</tr>
 			</tbody></table>";
-			
-
-			
-			
         }
 // Логин или пароль не верно введен:
 		elseif ($fet[0]['login'] != $l or $fet[0]['password'] != $p)
@@ -181,10 +200,6 @@ function logtest ($l, $p, $db)
 				<td colspan='2'><b>[Авторизация]</b>: Данные не введены.</td></div>
 			</tr>";
 		}
-		/*var_dump($fet[0]['login']);
-		var_dump($l);
-		var_dump($aut);*/
-		
 }
 
 
