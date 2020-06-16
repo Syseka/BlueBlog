@@ -72,7 +72,7 @@ function logtest ($l, $p, $db)
 		
 			<tbody>
 			<tr>
-				<td>Имя: </td><td>{$l}</td>
+				<td>Имя и id: </td><td>{$l} - <b>{$fet[0]['id']}</b></td>
 			</tr>
 			<tr>
 				<td>Число постов: </td><td>{$count}</td>
